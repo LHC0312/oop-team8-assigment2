@@ -1,2 +1,3 @@
-# block-coding-ide
-블록코딩 IDE 개발 (객지프 조별과제)
+# oop-team8-assigment2
+
+무한한 크기의 정수에 대한 계산기 만들기

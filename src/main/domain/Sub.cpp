@@ -1,0 +1,14 @@
+#include <string>
+#include "Operator.cpp"
+using namespace std;
+
+class Sub : Operator {
+  private:
+
+  public:
+    inline static const int PRORITY = 4;
+};
+
+Number operate(Number a, Number b) {
+
+}
