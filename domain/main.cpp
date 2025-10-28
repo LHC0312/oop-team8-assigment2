@@ -1,68 +1,38 @@
-#include "include/inf_int.h"
 #include <iostream>
 #include <string>
+#include "Parser.h"
+#include "inf_int.h"
+#include "include2/Parser.h"
 
 using namespace std;
 
-int main()
-{
-    while (true) {
-        cout << "Input: ";
+int main() {
+    // 1) 테스트용 수식과 변수 지정
+    string exprInput = "2*x+4";   // ← 여기 식 마음대로 바꿔가면서 테스트
+    string varName   = "x";
+    inf_int varValue("3");        // x = 3
 
-        string line;
-        if (!std::getline(cin, line)) {
-            // EOF나 입력 오류면 그냥 종료
-            break;
-        }
+    cout << "[LOG] expr=" << exprInput << ", "
+         << varName << "=" << varValue << endl;
 
-        if (line == "0") {
-            break;
-        }
+    try {
+        cout << "[LOG] creating parser\n";
+        Parser p(exprInput);
 
-        string lhs_str;
-        string rhs_str;
-        char op = 0;
+        cout << "[LOG] calling parse()\n";
+        Expr* root = p.parse();
+        cout << "[LOG] parse() returned\n";
 
-        {
-            size_t i = 0;
-            while (i < line.size() && line[i] == ' ') i++;
+        cout << "[LOG] calling evaluate()\n";
+        inf_int result = root->evaluate(varName, varValue);
+        cout << "[LOG] evaluate() returned\n";
 
-            size_t start = i;
-            while (i < line.size() && line[i] != ' ' && line[i] != '\t') {
-                i++;
-            }
-            lhs_str = line.substr(start, i - start);
+        cout << "Result: " << result << endl;
 
-            while (i < line.size() && line[i] == ' ') i++;
-            if (i < line.size()) {
-                op = line[i];
-                i++;
-            }
-
-            while (i < line.size() && line[i] == ' ') i++;
-            start = i;
-            while (i < line.size() && line[i] != ' ' && line[i] != '\t') {
-                i++;
-            }
-            rhs_str = line.substr(start, i - start);
-        }
-
-        inf_int lhs(lhs_str.c_str());
-        inf_int rhs(rhs_str.c_str());
-        inf_int result;
-
-        if (op == '+') {
-            result = lhs + rhs;
-        } else if (op == '-') {
-            result = lhs - rhs;
-        } else if (op == '*') {
-            result = lhs * rhs;
-        } else {
-            cout << "Output: [ERROR] unsupported operator" << endl;
-            continue;
-        }
-
-        cout << "Output: " << result << endl;
+        delete root;
+        cout << "[LOG] root deleted\n";
+    } catch (...) {
+        cerr << "[Error] 예외 발생\n";
     }
 
     return 0;
