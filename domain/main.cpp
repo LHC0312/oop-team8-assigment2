@@ -1,32 +1,68 @@
 #include "include/inf_int.h"
 #include <iostream>
-#include <string.h>
-#include <stdlib.h>
-#include <stdlib.h>
+#include <string>
 
 using namespace std;
 
 int main()
 {
-    inf_int a, e;
-    inf_int b(100);
-    inf_int c("321111111111122222222222233333333333444444444445555555555");
-    inf_int d("123451987651234572749499923455022211");
-    inf_int f=d;
-    inf_int g(f);
+    while (true) {
+        cout << "Input: ";
 
+        string line;
+        if (!std::getline(cin, line)) {
+            // EOF나 입력 오류면 그냥 종료
+            break;
+        }
 
-    a=b*c;
+        if (line == "0") {
+            break;
+        }
 
-    b=c-d;
+        string lhs_str;
+        string rhs_str;
+        char op = 0;
 
+        {
+            size_t i = 0;
+            while (i < line.size() && line[i] == ' ') i++;
 
-    if (f==d) {
-        cout << "a : " << a << endl;
-        cout << "b : " << b << endl;
-        cout << "c : " << c << endl;
-        cout << "d : " << d << endl;
-        cout << "f : " << f << endl;
+            size_t start = i;
+            while (i < line.size() && line[i] != ' ' && line[i] != '\t') {
+                i++;
+            }
+            lhs_str = line.substr(start, i - start);
+
+            while (i < line.size() && line[i] == ' ') i++;
+            if (i < line.size()) {
+                op = line[i];
+                i++;
+            }
+
+            while (i < line.size() && line[i] == ' ') i++;
+            start = i;
+            while (i < line.size() && line[i] != ' ' && line[i] != '\t') {
+                i++;
+            }
+            rhs_str = line.substr(start, i - start);
+        }
+
+        inf_int lhs(lhs_str.c_str());
+        inf_int rhs(rhs_str.c_str());
+        inf_int result;
+
+        if (op == '+') {
+            result = lhs + rhs;
+        } else if (op == '-') {
+            result = lhs - rhs;
+        } else if (op == '*') {
+            result = lhs * rhs;
+        } else {
+            cout << "Output: [ERROR] unsupported operator" << endl;
+            continue;
+        }
+
+        cout << "Output: " << result << endl;
     }
 
     return 0;
