@@ -4,6 +4,9 @@
 using namespace std;
 
 class CalculratorService {
-  public:
+  private:
+    void toPrefix;
     Number calculate(vector<string> tokens);
+  public:
+
 };

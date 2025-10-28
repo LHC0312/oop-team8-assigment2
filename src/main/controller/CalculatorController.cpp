@@ -15,9 +15,15 @@ CalculatorController::CalculatorController() {
 void CalculatorController::run() {
   View view;
   while(isRunning) {
+    try {
     vector<string> tokens = view.tokenize();
-  }
 
+    }
+    catch {
+
+    }
+  }
 }
+
 
 
