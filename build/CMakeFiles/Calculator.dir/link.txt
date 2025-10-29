@@ -1,0 +1,1 @@
+/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/Calculator.dir/src/main.cpp.o CMakeFiles/Calculator.dir/src/domain/inf_int.cpp.o CMakeFiles/Calculator.dir/src/view/view.cpp.o CMakeFiles/Calculator.dir/src/service/calculator_service.cpp.o CMakeFiles/Calculator.dir/src/controller/calculator_controller.cpp.o -o Calculator
