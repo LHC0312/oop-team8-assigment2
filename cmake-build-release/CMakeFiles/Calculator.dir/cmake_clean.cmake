@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Calculator.dir/src/controller/calculator_controller.cpp.o.d"
   "CMakeFiles/Calculator.dir/src/domain/inf_int.cpp.o"
   "CMakeFiles/Calculator.dir/src/domain/inf_int.cpp.o.d"
+  "CMakeFiles/Calculator.dir/src/domain/operator.cpp.o"
+  "CMakeFiles/Calculator.dir/src/domain/operator.cpp.o.d"
   "CMakeFiles/Calculator.dir/src/main.cpp.o"
   "CMakeFiles/Calculator.dir/src/main.cpp.o.d"
   "CMakeFiles/Calculator.dir/src/service/calculrator_service.cpp.o"

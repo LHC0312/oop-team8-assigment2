@@ -1,4 +1,4 @@
-#include "../include/calculator_service.h"
+#include "calculator_service.h"
 #include <sstream>
 #include <stack>
 #include <stdexcept>
@@ -48,7 +48,7 @@ vector<string> CalculatorService::tokenize(const string& expression) const {
                 current.clear();
             }
             
-            if (c == '-' && (tokens.empty() || tokens.back() == "(" || isOperator(tokens.back()))) {
+            if (c == '-' && (tokens.empty() || tokens.back() == "(" || OperatorManager::isOperator(tokens.back()))) {
                 current += c;
             } else {
                 tokens.emplace_back(1, c);
@@ -83,9 +83,9 @@ vector<string> CalculatorService::infixToPostfix(const vector<string>& tokens) c
                 throw runtime_error("Mismatched parentheses");
             }
             operators.pop();
-        } else if (isOperator(token)) {
+        } else if (OperatorManager::isOperator(token)) {
             while (!operators.empty() && operators.top() != "(" &&
-                   precedence(operators.top()) >= precedence(token)) {
+                   OperatorManager::getPrecedence(operators.top()) >= OperatorManager::getPrecedence(token)) {
                 output.push_back(operators.top());
                 operators.pop();
             }
@@ -112,7 +112,7 @@ inf_int CalculatorService::evaluatePostfix(const vector<string>& postfix) const 
     for (const auto& token : postfix) {
         if (isNumber(token)) {
             operandStack.emplace(token.c_str());
-        } else if (isOperator(token)) {
+        } else if (OperatorManager::isOperator(token)) {
             if (operandStack.size() < 2) {
                 throw runtime_error("Invalid expression");
             }
@@ -122,12 +122,15 @@ inf_int CalculatorService::evaluatePostfix(const vector<string>& postfix) const 
             const auto a = operandStack.top(); 
             operandStack.pop();
             
-            if (token == "+") {
-                operandStack.push(a + b);
-            } else if (token == "-") {
-                operandStack.push(a - b);
-            } else if (token == "*") {
-                operandStack.push(a * b);
+            const auto* op = OperatorManager::getOperator(token);
+            if (op) {
+                if (op->getSymbol() == "+") {
+                    operandStack.push(a + b);
+                } else if (op->getSymbol() == "-") {
+                    operandStack.push(a - b);
+                } else if (op->getSymbol() == "*") {
+                    operandStack.push(a * b);
+                }
             } else {
                 throw runtime_error("Unknown operator: " + token);
             }
@@ -139,16 +142,6 @@ inf_int CalculatorService::evaluatePostfix(const vector<string>& postfix) const 
     }
     
     return operandStack.top();
-}
-
-int CalculatorService::precedence(const string& op) {
-    if (op == "+" || op == "-") return 1;
-    if (op == "*") return 2;
-    return 0;
-}
-
-bool CalculatorService::isOperator(const string& token) {
-    return token == "+" || token == "-" || token == "*";
 }
 
 bool CalculatorService::isNumber(const string& token) {

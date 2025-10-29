@@ -1,7 +1,5 @@
 #include "inf_int.h"
 #include <string>
-#include <algorithm>
-#include <cstring>
 
 using namespace std;
 

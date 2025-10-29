@@ -1,4 +1,4 @@
-#include "../include/calculator_controller.h"
+#include "calculator_controller.h"
 
 using namespace std;
 

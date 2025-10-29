@@ -2,6 +2,7 @@
 #define CALCULATOR_SERVICE_H
 
 #include "inf_int.h"
+#include "operator.h"
 #include <string>
 #include <vector>
 
@@ -19,8 +20,6 @@ private:
     vector<string> infixToPostfix(const vector<string>& tokens) const;
     inf_int evaluatePostfix(const vector<string>& postfix) const;
     
-    static int precedence(const string& op);
-    static bool isOperator(const string& token);
     static bool isNumber(const string& token);
 };
 
