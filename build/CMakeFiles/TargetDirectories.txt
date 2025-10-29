@@ -1,0 +1,3 @@
+/Users/oseonbaeg/OOP2/build/CMakeFiles/CLionProjectsoop2_team8_assigment.dir
+/Users/oseonbaeg/OOP2/build/CMakeFiles/edit_cache.dir
+/Users/oseonbaeg/OOP2/build/CMakeFiles/rebuild_cache.dir

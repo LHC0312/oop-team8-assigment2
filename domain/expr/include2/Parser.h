@@ -19,6 +19,8 @@ private:
     Expr* parseVariable();
     Expr* parseFactor();
     Expr* parseTerm();
+    Expr* parsePower();
+    Expr* parseEquation();
     Expr* parseExpr();
 
 public:

@@ -9,6 +9,9 @@ public:
 
     virtual inf_int evaluate(const std::string& varName,
                              const inf_int& varValue) const = 0;
+    virtual bool isEquation() const { //방정식인지 판단
+        return false;
+    }
 };
 
 enum class BinaryOp {
@@ -17,5 +20,6 @@ enum class BinaryOp {
     Mul,
     Div,
     Pow,
-    Mod
+    Mod,
+    Equal
 };

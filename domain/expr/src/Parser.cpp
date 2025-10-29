@@ -122,9 +122,29 @@ Expr* Parser::parseExpr() {
     }
     return node;
 }
+Expr* Parser::parseEquation() {
+    // 1. 좌변(LHS)을 먼저 파싱합니다. 
+    //    (=보다 높은 우선순위인 덧셈/뺄셈까지 모두 파싱)
+    Expr* node = parseExpr();
 
+    skipSpaces();
+
+    // 2. '=' 기호가 있는지 확인합니다.
+    if (peek() == '=') {
+        get(); // '=' 문자 소모
+        
+        // 3. 우변(RHS)을 파싱합니다.
+        Expr* right = parseExpr(); 
+        
+        // 4. '=' 연산 노드를 만듭니다.
+        node = new BinaryExpr(BinaryOp::Equal, node, right);
+    }
+
+    // 5. '='가 없었다면 1번에서 파싱한 좌변(node)만 반환됩니다.
+    return node;
+}
 Expr* Parser::parse() {
-    Expr* root = parseExpr();
+    Expr* root = parseEquation();
     skipSpaces();
     return root;
 }
