@@ -1,6 +1,6 @@
 #include "../include/calculator_controller.h"
 
-CalculatorController::CalculatorController() : isRunning(false) {}
+using namespace std;
 
 void CalculatorController::run() {
     view.displayTitle();
@@ -9,13 +9,13 @@ void CalculatorController::run() {
     isRunning = true;
     
     while (isRunning) {
-        std::string expression = view.getExpression();
+        const auto expression = view.getExpression();
         processExpression(expression);
     }
 }
 
-void CalculatorController::processExpression(const std::string& expression) {
-    std::string result = service.evaluateExpression(expression);
+void CalculatorController::processExpression(const string& expression) {
+    const auto result = service.evaluateExpression(expression);
     
     if (result == "EXIT") {
         isRunning = false;

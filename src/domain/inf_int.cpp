@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <cstring>
 
+using namespace std;
+
 inf_int::inf_int()
 {
     this->digits = new char[2];
@@ -40,7 +42,7 @@ inf_int::inf_int(int n)
         buf[i] = '\0';
         this->digits = new char[i + 1];
         this->length = i;
-        std::strcpy(this->digits, buf);
+        strcpy(this->digits, buf);
     }
 }
 
@@ -66,7 +68,7 @@ inf_int::inf_int(const char* str)
         str++;
     }
 
-    int L = std::strlen(str);
+    int L = strlen(str);
     length = L;
 
     digits = new char[L + 1];
@@ -83,7 +85,7 @@ inf_int::inf_int(const char* str)
 inf_int::inf_int(const inf_int& a)
 {
     this->digits = new char[a.length + 1];
-    std::strcpy(this->digits, a.digits);
+    strcpy(this->digits, a.digits);
     this->length = a.length;
     this->thesign = a.thesign;
 }
@@ -98,7 +100,7 @@ inf_int& inf_int::operator=(const inf_int& a)
     if (this != &a) {
         delete[] this->digits;
         this->digits = new char[a.length + 1];
-        std::strcpy(this->digits, a.digits);
+        strcpy(this->digits, a.digits);
         this->length = a.length;
         this->thesign = a.thesign;
     }
@@ -313,7 +315,7 @@ inf_int operator*(const inf_int& a, const inf_int& b)
     return cleaned;
 }
 
-std::ostream& operator<<(std::ostream& out, const inf_int& a)
+ostream& operator<<(ostream& out, const inf_int& a)
 {
     if (!a.thesign && !(a.length == 1 && a.digits[0] == '0')) {
         out << '-';

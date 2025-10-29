@@ -1,36 +1,36 @@
 #include "../include/view.h"
 #include <iostream>
 
-View::View() {}
+using namespace std;
 
-void View::displayTitle() {
+void View::displayTitle() const {
     printTitle();
 }
 
-void View::displayDescription() {
+void View::displayDescription() const {
     printDescription();
 }
 
-void View::displayResult(const std::string& result) {
-    std::cout << "Output: " << result << std::endl;
+void View::displayResult(const string& result) const {
+    cout << "Output: " << result << endl;
 }
 
-void View::displayError(const std::string& error) {
-    std::cout << "Output: [ERROR] " << error << std::endl;
+void View::displayError(const string& error) const {
+    cout << "Output: [ERROR] " << error << endl;
 }
 
-std::string View::getExpression() {
-    std::cout << "Input: ";
-    std::string expression;
-    std::getline(std::cin, expression);
+string View::getExpression() const {
+    cout << "Input: ";
+    string expression;
+    getline(cin, expression);
     return expression;
 }
 
-void View::printTitle() {
-    std::cout << "===== Big Integer Calculator =====" << std::endl;
+void View::printTitle() const {
+    cout << "===== Big Integer Calculator =====" << endl;
 }
 
-void View::printDescription() {
-    std::cout << "Enter expressions with +, -, *, and () support" << std::endl;
-    std::cout << "Enter '0' to exit" << std::endl;
+void View::printDescription() const {
+    cout << "Enter expressions with +, -, *, and () support" << endl;
+    cout << "Enter '0' to exit" << endl;
 }

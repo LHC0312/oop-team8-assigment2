@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "CLionProjectsoop2_team8_assigment",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "CLionProjectsoop2_team8_assigment::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-CLionProjectsoop2_team8_assigment-Debug-404418af7006e352a029.json",
+					"name" : "CLionProjectsoop2_team8_assigment",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/\u1100\u1162\u11a8\u110e\u1166\u110c\u1175\u1112\u1163\u11bc\u1111\u1173\u1105\u1169\u1100\u1173\u1105\u1162\u1106\u1175\u11bc/oop-team8-assigment2/cmake-build-debug",
+		"source" : "/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/\u1100\u1162\u11a8\u110e\u1166\u110c\u1175\u1112\u1163\u11bc\u1111\u1173\u1105\u1169\u1100\u1173\u1105\u1162\u1106\u1175\u11bc/oop-team8-assigment2"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

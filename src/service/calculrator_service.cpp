@@ -3,53 +3,55 @@
 #include <stack>
 #include <stdexcept>
 #include <cctype>
+#include <algorithm>
+#include <utility>
 
-CalculatorService::CalculatorService() {}
+using namespace std;
 
-std::string CalculatorService::evaluateExpression(const std::string& expression) {
+string CalculatorService::evaluateExpression(const string& expression) const {
     try {
         if (expression == "0") {
             return "EXIT";
         }
         
-        std::vector<std::string> tokens = tokenize(expression);
+        const auto tokens = tokenize(expression);
         if (tokens.empty()) {
-            throw std::runtime_error("Empty expression");
+            throw runtime_error("Empty expression");
         }
         
-        std::vector<std::string> postfix = infixToPostfix(tokens);
-        inf_int result = evaluatePostfix(postfix);
+        const auto postfix = infixToPostfix(tokens);
+        const auto result = evaluatePostfix(postfix);
         
-        std::ostringstream oss;
+        ostringstream oss;
         oss << result;
         return oss.str();
-    } catch (const std::exception& e) {
-        return std::string("Error: ") + e.what();
+    } catch (const exception& e) {
+        return string("Error: ") + e.what();
     }
 }
 
-std::vector<std::string> CalculatorService::tokenize(const std::string& expression) {
-    std::vector<std::string> tokens;
-    std::string current;
+vector<string> CalculatorService::tokenize(const string& expression) const {
+    vector<string> tokens;
+    string current;
     
-    for (size_t i = 0; i < expression.length(); i++) {
-        char c = expression[i];
+    for (size_t i = 0; i < expression.length(); ++i) {
+        const char c = expression[i];
         
-        if (std::isspace(c)) {
+        if (isspace(c)) {
             if (!current.empty()) {
-                tokens.push_back(current);
+                tokens.push_back(std::move(current));
                 current.clear();
             }
         } else if (c == '+' || c == '-' || c == '*' || c == '(' || c == ')') {
             if (!current.empty()) {
-                tokens.push_back(current);
+                tokens.push_back(std::move(current));
                 current.clear();
             }
             
             if (c == '-' && (tokens.empty() || tokens.back() == "(" || isOperator(tokens.back()))) {
                 current += c;
             } else {
-                tokens.push_back(std::string(1, c));
+                tokens.emplace_back(1, c);
             }
         } else {
             current += c;
@@ -57,17 +59,17 @@ std::vector<std::string> CalculatorService::tokenize(const std::string& expressi
     }
     
     if (!current.empty()) {
-        tokens.push_back(current);
+        tokens.push_back(std::move(current));
     }
     
     return tokens;
 }
 
-std::vector<std::string> CalculatorService::infixToPostfix(const std::vector<std::string>& tokens) {
-    std::vector<std::string> output;
-    std::stack<std::string> operators;
+vector<string> CalculatorService::infixToPostfix(const vector<string>& tokens) const {
+    vector<string> output;
+    stack<string> operators;
     
-    for (const std::string& token : tokens) {
+    for (const auto& token : tokens) {
         if (isNumber(token)) {
             output.push_back(token);
         } else if (token == "(") {
@@ -78,7 +80,7 @@ std::vector<std::string> CalculatorService::infixToPostfix(const std::vector<std
                 operators.pop();
             }
             if (operators.empty()) {
-                throw std::runtime_error("Mismatched parentheses");
+                throw runtime_error("Mismatched parentheses");
             }
             operators.pop();
         } else if (isOperator(token)) {
@@ -89,13 +91,13 @@ std::vector<std::string> CalculatorService::infixToPostfix(const std::vector<std
             }
             operators.push(token);
         } else {
-            throw std::runtime_error("Invalid token: " + token);
+            throw runtime_error("Invalid token: " + token);
         }
     }
     
     while (!operators.empty()) {
         if (operators.top() == "(" || operators.top() == ")") {
-            throw std::runtime_error("Mismatched parentheses");
+            throw runtime_error("Mismatched parentheses");
         }
         output.push_back(operators.top());
         operators.pop();
@@ -104,50 +106,52 @@ std::vector<std::string> CalculatorService::infixToPostfix(const std::vector<std
     return output;
 }
 
-inf_int CalculatorService::evaluatePostfix(const std::vector<std::string>& postfix) {
-    std::stack<inf_int> stack;
+inf_int CalculatorService::evaluatePostfix(const vector<string>& postfix) const {
+    stack<inf_int> operandStack;
     
-    for (const std::string& token : postfix) {
+    for (const auto& token : postfix) {
         if (isNumber(token)) {
-            stack.push(inf_int(token.c_str()));
+            operandStack.emplace(token.c_str());
         } else if (isOperator(token)) {
-            if (stack.size() < 2) {
-                throw std::runtime_error("Invalid expression");
+            if (operandStack.size() < 2) {
+                throw runtime_error("Invalid expression");
             }
             
-            inf_int b = stack.top(); stack.pop();
-            inf_int a = stack.top(); stack.pop();
+            const auto b = operandStack.top(); 
+            operandStack.pop();
+            const auto a = operandStack.top(); 
+            operandStack.pop();
             
             if (token == "+") {
-                stack.push(a + b);
+                operandStack.push(a + b);
             } else if (token == "-") {
-                stack.push(a - b);
+                operandStack.push(a - b);
             } else if (token == "*") {
-                stack.push(a * b);
+                operandStack.push(a * b);
             } else {
-                throw std::runtime_error("Unknown operator: " + token);
+                throw runtime_error("Unknown operator: " + token);
             }
         }
     }
     
-    if (stack.size() != 1) {
-        throw std::runtime_error("Invalid expression");
+    if (operandStack.size() != 1) {
+        throw runtime_error("Invalid expression");
     }
     
-    return stack.top();
+    return operandStack.top();
 }
 
-int CalculatorService::precedence(const std::string& op) {
+int CalculatorService::precedence(const string& op) {
     if (op == "+" || op == "-") return 1;
     if (op == "*") return 2;
     return 0;
 }
 
-bool CalculatorService::isOperator(const std::string& token) {
+bool CalculatorService::isOperator(const string& token) {
     return token == "+" || token == "-" || token == "*";
 }
 
-bool CalculatorService::isNumber(const std::string& token) {
+bool CalculatorService::isNumber(const string& token) {
     if (token.empty()) return false;
     
     size_t start = 0;
@@ -156,11 +160,6 @@ bool CalculatorService::isNumber(const std::string& token) {
         if (token.length() == 1) return false;
     }
     
-    for (size_t i = start; i < token.length(); i++) {
-        if (!std::isdigit(token[i])) {
-            return false;
-        }
-    }
-    
-    return true;
+    return all_of(token.begin() + start, token.end(), 
+                  [](char c) { return isdigit(c); });
 }

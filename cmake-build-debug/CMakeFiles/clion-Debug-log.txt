@@ -1,0 +1,6 @@
+/Users/haechan/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" -S "/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2" -B "/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/cmake-build-debug"
+CMake Error at CMakeLists.txt:1 (cmake_minimum_required):
+  CMake 4.0 or higher is required.  You are running version 3.30.5
+
+
+-- Configuring incomplete, errors occurred!
