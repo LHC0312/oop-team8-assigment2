@@ -1,8 +1,9 @@
 #include "../include2/Parser.h"
+#include <cctype>
+#include <stdexcept>
 
 Parser::Parser(const std::string& input)
-    : s(input), pos(0)
-{}
+    : s(input), pos(0) {}
 
 char Parser::peek() const {
     if (pos < s.size()) return s[pos];
@@ -15,57 +16,67 @@ char Parser::get() {
 }
 
 void Parser::skipSpaces() {
-    while (std::isspace((unsigned char)peek())) {
+    while (std::isspace(static_cast<unsigned char>(peek()))) {
         get();
     }
 }
 
 Expr* Parser::parseNumber() {
     std::string numStr;
-    while (std::isdigit((unsigned char)peek())) {
+    while (std::isdigit(static_cast<unsigned char>(peek()))) {
         numStr.push_back(get());
     }
-    inf_int val(numStr.c_str());
-    return new NumberExpr(val);
+    if (numStr.empty()) {
+        throw std::runtime_error("Expected number");
+    }
+    return new NumberExpr(inf_int(numStr.c_str()));
 }
 
 Expr* Parser::parseVariable() {
     std::string name;
-    while (std::isalpha((unsigned char)peek())) {
+    while (std::isalpha(static_cast<unsigned char>(peek()))) {
         name.push_back(get());
+    }
+    if (name.empty()) {
+        throw std::runtime_error("Expected variable name");
     }
     return new VariableExpr(name);
 }
 
+// Factor :=
+//    '-' Factor        (단항 음수는 (0 - Factor))
+//  | Number
+//  | Variable
 Expr* Parser::parseFactor() {
     skipSpaces();
     char c = peek();
 
-    // 단항 음수 처리: -Factor → (0 - Factor)
     if (c == '-') {
-        get();
+        get(); // consume '-'
         Expr* zero = new NumberExpr(inf_int(0));
-        Expr* rhs = parseFactor();
+        Expr* rhs  = parseFactor();
         return new BinaryExpr(BinaryOp::Sub, zero, rhs);
     }
 
-    if (std::isdigit((unsigned char)c)) {
+    if (std::isdigit(static_cast<unsigned char>(c))) {
         return parseNumber();
-    } else if (std::isalpha((unsigned char)c)) {
-        return parseVariable();
-    } else {
-        get(); // 예외 문자 스킵
-        return new NumberExpr(inf_int(0));
     }
+
+    if (std::isalpha(static_cast<unsigned char>(c))) {
+        return parseVariable();
+    }
+
+    throw std::runtime_error("Unexpected token in factor");
 }
 
+// Term := Factor ( '*' Factor )*
 Expr* Parser::parseTerm() {
     Expr* node = parseFactor();
     while (true) {
         skipSpaces();
         char c = peek();
         if (c == '*') {
-            get();
+            get(); // consume '*'
             Expr* right = parseFactor();
             node = new BinaryExpr(BinaryOp::Mul, node, right);
         } else {
@@ -75,17 +86,18 @@ Expr* Parser::parseTerm() {
     return node;
 }
 
+// Expr := Term ( ('+' | '-') Term )*
 Expr* Parser::parseExpr() {
     Expr* node = parseTerm();
     while (true) {
         skipSpaces();
         char c = peek();
         if (c == '+') {
-            get();
+            get(); // consume '+'
             Expr* right = parseTerm();
             node = new BinaryExpr(BinaryOp::Add, node, right);
         } else if (c == '-') {
-            get();
+            get(); // consume '-'
             Expr* right = parseTerm();
             node = new BinaryExpr(BinaryOp::Sub, node, right);
         } else {

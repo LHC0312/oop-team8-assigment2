@@ -1,6 +1,11 @@
 #pragma once
 #include "Expr.h"
-using namespace std;
+
+enum class BinaryOp {
+    Add,
+    Sub,
+    Mul
+};
 
 class BinaryExpr : public Expr {
 private:
@@ -9,13 +14,17 @@ private:
     Expr* right;
 
 public:
-    BinaryExpr(BinaryOp o, Expr* l, Expr* r);
-    virtual ~BinaryExpr();
+    BinaryExpr(BinaryOp o, Expr* l, Expr* r)
+        : op(o), left(l), right(r) {}
 
-    virtual inf_int evaluate(const std::string& varName,
-                             const inf_int& varValue) const override;
+    ~BinaryExpr() {
+        // 우린 EquationSolverService에서 수동으로 delete 안 하고
+        // 여기서 소유권 정리하도록 한다.
+        delete left;
+        delete right;
+    }
+
     BinaryOp getOp() const { return op; }
-    Expr* getLeft() const { return left; }
-    Expr* getRight() const { return right; }
+    Expr*    getLeft() const { return left; }
+    Expr*    getRight() const { return right; }
 };
-

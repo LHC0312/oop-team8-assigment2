@@ -1,27 +1,4 @@
+// expr/src/BinaryExpr.cpp
 #include "../include2/BinaryExpr.h"
-
-BinaryExpr::BinaryExpr(BinaryOp o, Expr* l, Expr* r)
-    : op(o), left(l), right(r)
-{}
-
-BinaryExpr::~BinaryExpr() {
-    delete left;
-    delete right;
-}
-
-inf_int BinaryExpr::evaluate(const std::string& varName,
-                             const inf_int& varValue) const {
-    inf_int lv = left->evaluate(varName, varValue);
-    inf_int rv = right->evaluate(varName, varValue);
-
-    switch (op) {
-        case BinaryOp::Add:
-            return lv + rv;
-        case BinaryOp::Sub:
-            return lv - rv;
-        case BinaryOp::Mul:
-            return lv * rv;
-    }
-
-    return inf_int(0); // safety fallback
-}
+// 추가 구현 없음. 생성자/소멸자는 헤더에 이미 inline 정의돼 있고
+// evaluate 자체는 더 이상 클래스에 존재하지 않는다.

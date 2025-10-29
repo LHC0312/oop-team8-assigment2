@@ -2,17 +2,10 @@
 #include <string>
 #include "../../include/inf_int.h"
 
-
 class Expr {
 public:
-    virtual ~Expr();
-
-    virtual inf_int evaluate(const std::string& varName,
-                             const inf_int& varValue) const = 0;
+    virtual ~Expr() {}
 };
 
-enum class BinaryOp {
-    Add, 
-    Sub, 
-    Mul  
-};
+// 끝. 다른 거 넣지 마.
+// 특히 virtual inf_int evaluate(...) 같은 거 절대 넣지 마.

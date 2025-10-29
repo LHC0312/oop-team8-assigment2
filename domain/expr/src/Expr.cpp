@@ -1,4 +1,3 @@
+// expr/src/Expr.cpp
 #include "../include2/Expr.h"
-
-Expr::~Expr() = default;
-//얘가 통합하는 뼈대라 만들수밖에없슨
+// 아무 것도 더 정의하지 마. (소멸자 이미 헤더에서 정의됨)
