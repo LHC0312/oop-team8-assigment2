@@ -1,69 +1,32 @@
-#include "include/inf_int.h"
 #include <iostream>
 #include <string>
+//#include "Parser.h"
+#include "include/inf_int.h"
+#include "expr/include2/Parser.h"
+#include "expr/include2/Equation.h"
 
 using namespace std;
 
-int main()
-{
-    while (true) {
-        cout << "Input: ";
+int main() {
+    
+    string exprInput = "2*x+4=12";
+    string varName   = "x";
+    inf_int evalValue("3");
 
-        string line;
-        if (!std::getline(cin, line)) {
-            // EOF나 입력 오류면 그냥 종료
-            break;
-        }
+    cout << "[LOG] expr=" << exprInput << endl;
 
-        if (line == "0") {
-            break;
-        }
+    try {
+        Parser p(exprInput);
+        Expr* root = p.parse();
+        cout << "[LOG] parse() returned\n";
 
-        string lhs_str;
-        string rhs_str;
-        char op = 0;
+        Equation equationSolver; // 2. 클래스 이름 변경
+        equationSolver.process(root, varName, evalValue); // 3. 변수 이름 변경
 
-        {
-            size_t i = 0;
-            while (i < line.size() && line[i] == ' ') i++;
-
-            size_t start = i;
-            while (i < line.size() && line[i] != ' ' && line[i] != '\t') {
-                i++;
-            }
-            lhs_str = line.substr(start, i - start);
-
-            while (i < line.size() && line[i] == ' ') i++;
-            if (i < line.size()) {
-                op = line[i];
-                i++;
-            }
-
-            while (i < line.size() && line[i] == ' ') i++;
-            start = i;
-            while (i < line.size() && line[i] != ' ' && line[i] != '\t') {
-                i++;
-            }
-            rhs_str = line.substr(start, i - start);
-        }
-
-        inf_int lhs(lhs_str.c_str());
-        inf_int rhs(rhs_str.c_str());
-        inf_int result;
-
-        if (op == '+') {
-            result = lhs + rhs;
-        } else if (op == '-') {
-            result = lhs - rhs;
-        } else if (op == '*') {
-            result = lhs * rhs;
-        } else {
-            cout << "Output: [ERROR] unsupported operator" << endl;
-            continue;
-        }
-
-        cout << "Output: " << result << endl;
+        delete root;
+        cout << "[LOG] root deleted\n";
+    } catch (...) {
+        // ...
     }
-
     return 0;
 }
