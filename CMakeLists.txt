@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.10)
 project(Calculator)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -9,7 +9,7 @@ set(SRC_FILES
     src/main.cpp
     src/domain/inf_int.cpp
     src/view/view.cpp
-    src/service/calculrator_service.cpp
+    src/service/calculator_service.cpp
     src/controller/calculator_controller.cpp
 )
 
