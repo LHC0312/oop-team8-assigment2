@@ -40,7 +40,7 @@ Expr* Parser::parseVariable() {
 Expr* Parser::parseFactor() {
     skipSpaces();
     char c = peek();
-
+    
     // 단항 음수 처리: -Factor → (0 - Factor)
     if (c == '-') {
         get();
@@ -48,7 +48,18 @@ Expr* Parser::parseFactor() {
         Expr* rhs = parseFactor();
         return new BinaryExpr(BinaryOp::Sub, zero, rhs);
     }
-
+    if (c == '(') {
+            get(); // '(' 소모
+            Expr* node = parseExpr(); // 괄호 안의 표현식을 파싱
+            skipSpaces();
+            if (peek() != ')') {
+                std::string error_msg = "Breaktheses not exist";
+                error_msg.push_back(c);
+                throw std::runtime_error(error_msg);
+            }
+            get(); // ')' 소모
+            return node;
+        }
     if (std::isdigit((unsigned char)c)) {
         return parseNumber();
     } else if (std::isalpha((unsigned char)c)) {
@@ -58,16 +69,33 @@ Expr* Parser::parseFactor() {
         return new NumberExpr(inf_int(0));
     }
 }
-
+Expr* Parser::parsePower() {
+    Expr* node = parseFactor(); // 왼쪽 피연산자(base)
+    skipSpaces();
+    if (peek() == '^') {
+        get(); // '^' 소모
+        Expr* right = parsePower(); // <--- 오른쪽 피연산자(exponent)를 재귀적으로 파싱
+        node = new BinaryExpr(BinaryOp::Pow, node, right);
+    }
+    return node;
+}
 Expr* Parser::parseTerm() {
-    Expr* node = parseFactor();
+    Expr* node = parsePower();
     while (true) {
         skipSpaces();
         char c = peek();
         if (c == '*') {
             get();
-            Expr* right = parseFactor();
+            Expr* right = parsePower();
             node = new BinaryExpr(BinaryOp::Mul, node, right);
+        } else if(c == '/'){
+            get();
+            Expr* right = parsePower();
+            node = new BinaryExpr(BinaryOp::Div, node, right);
+        }else if (c == '%') { // <--- MOD (%) 처리 추가
+            get();
+            Expr* right = parsePower();
+            node = new BinaryExpr(BinaryOp::Mod, node, right);
         } else {
             break;
         }

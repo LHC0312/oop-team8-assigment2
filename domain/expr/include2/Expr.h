@@ -14,5 +14,8 @@ public:
 enum class BinaryOp {
     Add, 
     Sub, 
-    Mul  
+    Mul,
+    Div,
+    Pow,
+    Mod
 };
