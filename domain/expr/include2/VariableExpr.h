@@ -7,6 +7,7 @@ private:
 
 public:
     VariableExpr(const std::string& n);
+    const std::string& getName() const { return name; }
     virtual inf_int evaluate(const std::string& varName,
                              const inf_int& varValue) const override;
 };

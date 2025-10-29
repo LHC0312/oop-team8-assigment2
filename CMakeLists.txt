@@ -37,4 +37,6 @@ add_executable(CLionProjectsoop2_team8_assigment
         domain/expr/include2/BinaryExpr.h
         domain/expr/src/Parser.cpp
         domain/expr/include2/Parser.h
+        domain/expr/EquationSolverService.cpp
+        domain/expr/include2/EquationSolverService.h
 )

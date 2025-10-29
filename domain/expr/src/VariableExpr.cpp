@@ -9,6 +9,5 @@ inf_int VariableExpr::evaluate(const std::string& varName,
     if (name == varName)
         return varValue;
 
-    // 다른 변수는 0으로 처리 (또는 throw 가능)
     return inf_int(0);
 }
