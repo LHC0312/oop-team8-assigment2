@@ -1,5 +1,5 @@
 #include "inf_int.h"
-#include <string>
+#include <cstring>
 
 using namespace std;
 
@@ -312,7 +312,167 @@ inf_int operator*(const inf_int& a, const inf_int& b)
     delete[] normal;
     return cleaned;
 }
+static inf_int divAbs(const inf_int& a, const inf_int& b) {
+    inf_int remainder("0"); // 현재 나머지
+    inf_int ten(10);
+    std::string quotientStr;    // 몫을 문자열로 구성 (앞에서부터)
 
+    // a의 가장 높은 자릿수부터 순회합니다.
+    // (digits는 뒤집혀 있으므로, length - 1 부터 0 까지)
+    for (int i = (int)a.getLength() - 1; i >= 0; i--) {
+
+        // 1. "숫자 하나 내려받기" (remainder = remainder * 10 + next_digit)
+        remainder = remainder * ten;
+
+        // getDigits()[i] (i번째 자릿수)를 inf_int로 만듭니다.
+        char digit_char[2] = { a.getDigits()[i], '\0' };
+        inf_int nextDigit(digit_char);
+        // inf_int(const char*) 생성자는 정방향 문자열을 받으므로 "3" -> 3
+
+        remainder = remainder + nextDigit;
+
+        // 2. 현재 나머지(remainder)가 b로 몇 번 나누어지는지 찾기 (0~9)
+        int quotientDigit = 0;
+        for (int q = 9; q >= 1; q--) {
+            inf_int q_int(q); // inf_int(int) 생성자 사용
+
+            // test = b * q
+            inf_int test = b * q_int;
+
+            // if (test <= remainder)
+            if (absCompare(test, remainder) <= 0) {
+                quotientDigit = q;
+                remainder = remainder - test; // remainder = remainder - test
+                break; // 몫의 현재 자릿수를 찾았으므로 중단
+            }
+        }
+        quotientStr.push_back(quotientDigit + '0');
+    }
+
+    // 3. 몫 문자열 정리 (예: "00123" -> "123")
+    // (inf_int(const char*) 생성자가 이미 앞쪽 0을 제거해줍니다.)
+    return inf_int(quotientStr.c_str());
+}
+
+/**
+ * @brief inf_int 나눗셈 연산자 (a / b)
+ * (operator*와 유사한 구조로 작성)
+ */
+inf_int operator/(const inf_int& a, const inf_int& b)
+{
+    // 1. 엣지 케이스 처리 (b == 0)
+    if (isZero(b)) {
+        // 0으로 나누는 것은 정의되지 않음.
+        // 여기서는 0을 반환합니다. (operator*가 0을 반환하는 것과 일관성)
+        return inf_int(0);
+    }
+
+    // 2. 엣지 케이스 처리 (a == 0)
+    if (isZero(a)) {
+        return inf_int(0);
+    }
+
+    // 3. 정수 나눗셈의 엣지 케이스 (|a| < |b|)
+    if (absCompare(a, b) == -1) {
+        return inf_int(0);
+    }
+
+    // 4. 핵심 로직 호출 (divAbs 헬퍼 함수 사용)
+    inf_int result = divAbs(a, b);
+
+    // 5. 부호 결정 (operator*와 동일한 로직)
+    bool signResult = (a.isPositive() == b.isPositive());
+    result.setSign(signResult);
+
+    // 6. 결과 정리
+    // divAbs가 반환하는 `inf_int`는 이미 inf_int(const char*) 생성자를 통해
+    // "00123" -> "123" 처리가 완료된 상태입니다.
+    // (operator*의 cleanup 로직이 필요 없음)
+
+    // 부호가 음수가 되었는데 값이 0인 경우 부호 정리
+    if (isZero(result)) {
+        result.setSign(true);
+    }
+
+    return result;
+}
+/**
+ * @brief inf_int가 홀수인지 확인하는 static 헬퍼 함수
+ */
+static bool isOdd(const inf_int& a) {
+    // 0은 짝수
+    if (isZero(a)) {
+        return false;
+    }
+    // digits[0] (가장 낮은 자릿수)가 홀수인지 확인
+    return (a.getDigits()[0] - '0') % 2 != 0;
+}
+
+/**
+ * @brief inf_int 거듭제곱 연산자 (a ^ b)
+ * (제곱을 통한 거듭제곱 알고리즘 사용)
+ */
+inf_int operator^(const inf_int& a, const inf_int& b)
+{
+    // --- 1. 엣지 케이스 처리 ---
+
+    // 1-1. 지수(b)가 0인 경우: a^0 = 1 (단, 0^0도 1로 처리)
+    if (isZero(b)) {
+        return inf_int(1);
+    }
+
+    // 1-2. 지수(b)가 음수인 경우: a^(-b) = 1 / a^b
+    // 정수 클래스이므로, 결과는 0 (소수점 버림)
+    if (!b.isPositive()) {
+        return inf_int(0);
+    }
+
+    // (이제 b는 1 이상)
+
+    // 1-3. 베이스(a)가 0인 경우: 0^b = 0
+    if (isZero(a)) {
+        return inf_int(0);
+    }
+
+    // 1-4. 베이스(a)가 1인 경우: 1^b = 1
+    if (a.getLength() == 1 && a.getDigits()[0] == '1' && a.isPositive()) {
+        return inf_int(1);
+    }
+
+    // 1-5. 베이스(a)가 -1인 경우: (-1)^b
+    if (a.getLength() == 1 && a.getDigits()[0] == '1' && !a.isPositive()) {
+        if (isOdd(b)) {
+            return inf_int(-1); // b가 홀수면 -1
+        } else {
+            return inf_int(1);  // b가 짝수면 1
+        }
+    }
+
+    // --- 2. 핵심 로직 (Exponentiation by Squaring) ---
+    // (a^b 계산)
+
+    inf_int base = a;
+    inf_int exponent = b;
+    inf_int result(1);
+    inf_int two(2); // 2로 나누기 위한 상수
+
+    // exponent가 0이 될 때까지 반복
+    while (!isZero(exponent)) {
+
+        // exponent가 홀수이면, result에 base를 곱함
+        if (isOdd(exponent)) {
+            result = result * base;
+        }
+
+        // base를 제곱함 (a -> a^2 -> a^4 -> a^8 ...)
+        base = base * base;
+
+        // exponent를 2로 나눔 (정수 나눗셈)
+        exponent = exponent / two;
+    }
+
+    return result;
+}
 ostream& operator<<(ostream& out, const inf_int& a)
 {
     if (!a.thesign && !(a.length == 1 && a.digits[0] == '0')) {

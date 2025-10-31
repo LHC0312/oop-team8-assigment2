@@ -177,30 +177,6 @@ src/domain/inf_int.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/src/domain/inf_int.cpp.s
 .PHONY : src/domain/inf_int.cpp.s
 
-src/domain/operator.o: src/domain/operator.cpp.o
-.PHONY : src/domain/operator.o
-
-# target to build an object file
-src/domain/operator.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/src/domain/operator.cpp.o
-.PHONY : src/domain/operator.cpp.o
-
-src/domain/operator.i: src/domain/operator.cpp.i
-.PHONY : src/domain/operator.i
-
-# target to preprocess a source file
-src/domain/operator.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/src/domain/operator.cpp.i
-.PHONY : src/domain/operator.cpp.i
-
-src/domain/operator.s: src/domain/operator.cpp.s
-.PHONY : src/domain/operator.s
-
-# target to generate assembly for a file
-src/domain/operator.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/src/domain/operator.cpp.s
-.PHONY : src/domain/operator.cpp.s
-
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -288,9 +264,6 @@ help:
 	@echo "... src/domain/inf_int.o"
 	@echo "... src/domain/inf_int.i"
 	@echo "... src/domain/inf_int.s"
-	@echo "... src/domain/operator.o"
-	@echo "... src/domain/operator.i"
-	@echo "... src/domain/operator.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

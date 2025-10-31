@@ -2,23 +2,27 @@
 #define VIEW_H
 
 #include <string>
+#include <vector>
+#include <unordered_map>
 
 using namespace std;
 
 class View {
-public:
-    View() = default;
-    ~View() = default;
-    
-    void displayTitle() const;
-    void displayDescription() const;
-    void displayResult(const string& result) const;
-    void displayError(const string& error) const;
-    string getExpression() const;
 
-private:
-    void printTitle() const;
-    void printDescription() const;
-};
+    public:
+      View();
+      void displayTitle();
+      void displayDescription();
+      void resultDisplay(const string& expressionResult);
+      string getExpression(bool isVariableMode = false);
+      unordered_map<string, double> readVariables();
+      void printCalculateResult(double result);
+      void printError(const string& errormsg);
+
+    private:
+      void printTitle();
+      void printDescription();
+
+  };
 
 #endif

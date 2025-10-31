@@ -23,9 +23,9 @@ void CalculatorController::processExpression(const string& expression) {
     }
     
     if (result.substr(0, 6) == "Error:") {
-        view.displayError(result.substr(7));
+        view.resultDisplay(result.substr(7));
     } else {
-        view.displayResult(result);
+        view.resultDisplay(result);
     }
 }
 
