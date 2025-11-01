@@ -8,9 +8,11 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 set(SRC_FILES
     src/main.cpp
     src/domain/inf_int.cpp
-    #src/domain/operatorManager.h
+    src/domain/operatorManager.cpp
+    src/domain/variable.cpp
     src/view/view.cpp
     src/service/calculrator_service.cpp
+    src/service/parser_service.cpp
     src/controller/calculator_controller.cpp
 )
 

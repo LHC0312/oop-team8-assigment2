@@ -1,3 +1,6 @@
+#ifndef OPERATORMANAGER_H
+#define OPERATORMANAGER_H
+
 #include "inf_int.h"
 #include <string>
 #include <vector>
@@ -9,21 +12,22 @@ class OperatorManager;
 struct Operator {
    string expr;
    int priority;
-   inf_int (OperatorManager::*function)(inf_int, inf_int);
 };
 
 class OperatorManager {
    private:
       vector<Operator> opers;
 
-      inf_int add(inf_int a, inf_int b);
-      inf_int sub(inf_int a, inf_int b);
-      inf_int mul(inf_int a, inf_int b);
-      inf_int div(inf_int a, inf_int b);
-      inf_int pow(inf_int a, inf_int b);
+      inf_int add(inf_int a, inf_int b) const;
+      inf_int sub(inf_int a, inf_int b) const;
+      inf_int mul(inf_int a, inf_int b) const;
+      inf_int div(inf_int a, inf_int b) const;
+      inf_int pow(inf_int a, inf_int b) const;
 
    public:
       OperatorManager();
-      bool isOperator(string str);
-      inf_int execute(string opStr, inf_int a, inf_int b);
+      bool isOperator(string str) const;
+      inf_int execute(string opStr, inf_int a, inf_int b) const;
 };
+
+#endif // OPERATORMANAGER_H

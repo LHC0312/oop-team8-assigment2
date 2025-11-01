@@ -13,6 +13,7 @@ class View {
       View();
       void displayTitle();
       void displayDescription();
+      void displayVariablePrompt();
       void resultDisplay(const string& expressionResult);
       string getExpression(bool isVariableMode = false);
       unordered_map<string, double> readVariables();

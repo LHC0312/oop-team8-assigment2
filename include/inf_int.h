@@ -30,7 +30,8 @@ public :
     friend inf_int operator+(const inf_int& , const inf_int&);
     friend inf_int operator-(const inf_int& , const inf_int&);
     friend inf_int operator*(const inf_int& , const inf_int&);
-    friend inf_int operator/(const inf_int& , const inf_int&); // not required
+    friend inf_int operator/(const inf_int& , const inf_int&);
+    friend inf_int operator^(const inf_int& , const inf_int&);
 
     friend ostream& operator<<(ostream& , const inf_int&);
     // friend istream& operator>>(istream& , inf_int&);    // not required

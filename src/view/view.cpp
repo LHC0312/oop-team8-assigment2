@@ -20,6 +20,10 @@ void View::displayDescription(){
     printDescription();
 }
 
+void View::displayVariablePrompt(){
+    cout << "Expression contains variables. Please provide values:\n";
+}
+
 void View::resultDisplay(const string& expressionResult){
     int used = static_cast<int>(11 + expressionResult.size());
     int pad = max(0, 36 - used);
@@ -37,7 +41,9 @@ string View::getExpression(bool isVariableMode){
     cout << "> ";
 
     string line;
-    getline(cin, line);
+    if (!getline(cin, line)) {
+        return "q";  // EOF reached, quit the program
+    }
 
     string expression;
     string token;
@@ -51,22 +57,40 @@ string View::getExpression(bool isVariableMode){
 }
 
 unordered_map<string, double> View::readVariables(){
-    cout << "Write down value of variable\n";
-    cout << ">";
+    cout << "Enter variable values (format: x=5 or just: 5 for x)\n";
+    cout << "> ";
 
     unordered_map<string, double> vars;
     string line;
     getline(cin, line);
-    string kv;
+    
+    // Handle simple number input (assume it's for 'x')
+    try {
+        double value = stod(line);
+        vars["x"] = value;
+        return vars;
+    } catch (...) {
+        // If it's not a simple number, try parsing as key=value pairs
+    }
+    
     stringstream ss(line);
+    string kv;
 
     while(ss >> kv){
         auto pos = kv.find("=");
+        if (pos != string::npos) {
+            string varName = kv.substr(0, pos);
+            string value = kv.substr(pos + 1);
+            
+            // Convert variable name to lowercase for consistency
+            transform(varName.begin(), varName.end(), varName.begin(), ::tolower);
+            vars[varName] = stod(value);
+        }
+    }
 
-        string varName = kv.substr(0, pos);
-        string value = kv.substr(pos + 1);
-
-        vars[varName] = stod(value);
+    // If no variables were parsed and we have tokens, assume it's x=value format
+    if (vars.empty()) {
+        vars["x"] = 0; // Default value
     }
 
     return vars;

@@ -936,4 +936,6 @@ CMakeFiles/Calculator.dir/src/controller/calculator_controller.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/stack \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk/usr/include/c++/v1/print \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk/usr/include/unistd.h \
-  /Users/haechan/Library/Mobile\ Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/include/operator.h
+  /Users/haechan/Library/Mobile\ Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/include/parse.h \
+  /Users/haechan/Library/Mobile\ Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/include/variable.h \
+  /Users/haechan/Library/Mobile\ Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/include/operatorManager.h

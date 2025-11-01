@@ -3,13 +3,13 @@
 //
 #include "variable.h"
 
-bool Variable::isVariable(string s) {
-  for (string expr : exprs) {
+bool Variable::isVariable(string s) const {
+  for (const string& expr : exprs) {
     if (expr  == s) return true;
   }
   return false;
 }
 
-inf_int substitute(inf_int k) {
+inf_int Variable::substitute(inf_int k) const {
   return k;
 }

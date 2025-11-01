@@ -2,7 +2,6 @@
 #define VARIABLE_H
 
 
-#include "variable.h"
 #include "inf_int.h"
 #include <string>
 #include <vector>
@@ -12,8 +11,8 @@ class Variable {
   private:
   const vector<string> exprs = {"X", "x"};
   public:
-  bool isVariable(string s);
-  inf_int substitute(inf_int k);
+  bool isVariable(string s) const;
+  inf_int substitute(inf_int k) const;
 };
 
 #endif //VARIABLE_H

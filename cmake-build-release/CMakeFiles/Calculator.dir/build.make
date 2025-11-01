@@ -97,10 +97,38 @@ CMakeFiles/Calculator.dir/src/domain/inf_int.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Calculator.dir/src/domain/inf_int.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/src/domain/inf_int.cpp" -o CMakeFiles/Calculator.dir/src/domain/inf_int.cpp.s
 
+CMakeFiles/Calculator.dir/src/domain/operatorManager.cpp.o: CMakeFiles/Calculator.dir/flags.make
+CMakeFiles/Calculator.dir/src/domain/operatorManager.cpp.o: /Users/haechan/Library/Mobile\ Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/src/domain/operatorManager.cpp
+CMakeFiles/Calculator.dir/src/domain/operatorManager.cpp.o: CMakeFiles/Calculator.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/cmake-build-release/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Calculator.dir/src/domain/operatorManager.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calculator.dir/src/domain/operatorManager.cpp.o -MF CMakeFiles/Calculator.dir/src/domain/operatorManager.cpp.o.d -o CMakeFiles/Calculator.dir/src/domain/operatorManager.cpp.o -c "/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/src/domain/operatorManager.cpp"
+
+CMakeFiles/Calculator.dir/src/domain/operatorManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Calculator.dir/src/domain/operatorManager.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/src/domain/operatorManager.cpp" > CMakeFiles/Calculator.dir/src/domain/operatorManager.cpp.i
+
+CMakeFiles/Calculator.dir/src/domain/operatorManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Calculator.dir/src/domain/operatorManager.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/src/domain/operatorManager.cpp" -o CMakeFiles/Calculator.dir/src/domain/operatorManager.cpp.s
+
+CMakeFiles/Calculator.dir/src/domain/variable.cpp.o: CMakeFiles/Calculator.dir/flags.make
+CMakeFiles/Calculator.dir/src/domain/variable.cpp.o: /Users/haechan/Library/Mobile\ Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/src/domain/variable.cpp
+CMakeFiles/Calculator.dir/src/domain/variable.cpp.o: CMakeFiles/Calculator.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/cmake-build-release/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Calculator.dir/src/domain/variable.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calculator.dir/src/domain/variable.cpp.o -MF CMakeFiles/Calculator.dir/src/domain/variable.cpp.o.d -o CMakeFiles/Calculator.dir/src/domain/variable.cpp.o -c "/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/src/domain/variable.cpp"
+
+CMakeFiles/Calculator.dir/src/domain/variable.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Calculator.dir/src/domain/variable.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/src/domain/variable.cpp" > CMakeFiles/Calculator.dir/src/domain/variable.cpp.i
+
+CMakeFiles/Calculator.dir/src/domain/variable.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Calculator.dir/src/domain/variable.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/src/domain/variable.cpp" -o CMakeFiles/Calculator.dir/src/domain/variable.cpp.s
+
 CMakeFiles/Calculator.dir/src/view/view.cpp.o: CMakeFiles/Calculator.dir/flags.make
 CMakeFiles/Calculator.dir/src/view/view.cpp.o: /Users/haechan/Library/Mobile\ Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/src/view/view.cpp
 CMakeFiles/Calculator.dir/src/view/view.cpp.o: CMakeFiles/Calculator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/cmake-build-release/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Calculator.dir/src/view/view.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/cmake-build-release/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Calculator.dir/src/view/view.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calculator.dir/src/view/view.cpp.o -MF CMakeFiles/Calculator.dir/src/view/view.cpp.o.d -o CMakeFiles/Calculator.dir/src/view/view.cpp.o -c "/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/src/view/view.cpp"
 
 CMakeFiles/Calculator.dir/src/view/view.cpp.i: cmake_force
@@ -114,7 +142,7 @@ CMakeFiles/Calculator.dir/src/view/view.cpp.s: cmake_force
 CMakeFiles/Calculator.dir/src/service/calculrator_service.cpp.o: CMakeFiles/Calculator.dir/flags.make
 CMakeFiles/Calculator.dir/src/service/calculrator_service.cpp.o: /Users/haechan/Library/Mobile\ Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/src/service/calculrator_service.cpp
 CMakeFiles/Calculator.dir/src/service/calculrator_service.cpp.o: CMakeFiles/Calculator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/cmake-build-release/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Calculator.dir/src/service/calculrator_service.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/cmake-build-release/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Calculator.dir/src/service/calculrator_service.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calculator.dir/src/service/calculrator_service.cpp.o -MF CMakeFiles/Calculator.dir/src/service/calculrator_service.cpp.o.d -o CMakeFiles/Calculator.dir/src/service/calculrator_service.cpp.o -c "/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/src/service/calculrator_service.cpp"
 
 CMakeFiles/Calculator.dir/src/service/calculrator_service.cpp.i: cmake_force
@@ -125,10 +153,24 @@ CMakeFiles/Calculator.dir/src/service/calculrator_service.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Calculator.dir/src/service/calculrator_service.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/src/service/calculrator_service.cpp" -o CMakeFiles/Calculator.dir/src/service/calculrator_service.cpp.s
 
+CMakeFiles/Calculator.dir/src/service/parser_service.cpp.o: CMakeFiles/Calculator.dir/flags.make
+CMakeFiles/Calculator.dir/src/service/parser_service.cpp.o: /Users/haechan/Library/Mobile\ Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/src/service/parser_service.cpp
+CMakeFiles/Calculator.dir/src/service/parser_service.cpp.o: CMakeFiles/Calculator.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/cmake-build-release/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Calculator.dir/src/service/parser_service.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calculator.dir/src/service/parser_service.cpp.o -MF CMakeFiles/Calculator.dir/src/service/parser_service.cpp.o.d -o CMakeFiles/Calculator.dir/src/service/parser_service.cpp.o -c "/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/src/service/parser_service.cpp"
+
+CMakeFiles/Calculator.dir/src/service/parser_service.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Calculator.dir/src/service/parser_service.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/src/service/parser_service.cpp" > CMakeFiles/Calculator.dir/src/service/parser_service.cpp.i
+
+CMakeFiles/Calculator.dir/src/service/parser_service.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Calculator.dir/src/service/parser_service.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/src/service/parser_service.cpp" -o CMakeFiles/Calculator.dir/src/service/parser_service.cpp.s
+
 CMakeFiles/Calculator.dir/src/controller/calculator_controller.cpp.o: CMakeFiles/Calculator.dir/flags.make
 CMakeFiles/Calculator.dir/src/controller/calculator_controller.cpp.o: /Users/haechan/Library/Mobile\ Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/src/controller/calculator_controller.cpp
 CMakeFiles/Calculator.dir/src/controller/calculator_controller.cpp.o: CMakeFiles/Calculator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/cmake-build-release/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Calculator.dir/src/controller/calculator_controller.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/cmake-build-release/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Calculator.dir/src/controller/calculator_controller.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Calculator.dir/src/controller/calculator_controller.cpp.o -MF CMakeFiles/Calculator.dir/src/controller/calculator_controller.cpp.o.d -o CMakeFiles/Calculator.dir/src/controller/calculator_controller.cpp.o -c "/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/src/controller/calculator_controller.cpp"
 
 CMakeFiles/Calculator.dir/src/controller/calculator_controller.cpp.i: cmake_force
@@ -143,8 +185,11 @@ CMakeFiles/Calculator.dir/src/controller/calculator_controller.cpp.s: cmake_forc
 Calculator_OBJECTS = \
 "CMakeFiles/Calculator.dir/src/main.cpp.o" \
 "CMakeFiles/Calculator.dir/src/domain/inf_int.cpp.o" \
+"CMakeFiles/Calculator.dir/src/domain/operatorManager.cpp.o" \
+"CMakeFiles/Calculator.dir/src/domain/variable.cpp.o" \
 "CMakeFiles/Calculator.dir/src/view/view.cpp.o" \
 "CMakeFiles/Calculator.dir/src/service/calculrator_service.cpp.o" \
+"CMakeFiles/Calculator.dir/src/service/parser_service.cpp.o" \
 "CMakeFiles/Calculator.dir/src/controller/calculator_controller.cpp.o"
 
 # External object files for target Calculator
@@ -152,12 +197,15 @@ Calculator_EXTERNAL_OBJECTS =
 
 Calculator: CMakeFiles/Calculator.dir/src/main.cpp.o
 Calculator: CMakeFiles/Calculator.dir/src/domain/inf_int.cpp.o
+Calculator: CMakeFiles/Calculator.dir/src/domain/operatorManager.cpp.o
+Calculator: CMakeFiles/Calculator.dir/src/domain/variable.cpp.o
 Calculator: CMakeFiles/Calculator.dir/src/view/view.cpp.o
 Calculator: CMakeFiles/Calculator.dir/src/service/calculrator_service.cpp.o
+Calculator: CMakeFiles/Calculator.dir/src/service/parser_service.cpp.o
 Calculator: CMakeFiles/Calculator.dir/src/controller/calculator_controller.cpp.o
 Calculator: CMakeFiles/Calculator.dir/build.make
 Calculator: CMakeFiles/Calculator.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/cmake-build-release/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable Calculator"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/cmake-build-release/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable Calculator"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Calculator.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

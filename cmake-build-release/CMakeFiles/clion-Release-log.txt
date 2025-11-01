@@ -1,4 +1,4 @@
 /Users/haechan/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" -S "/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2" -B "/Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/cmake-build-release"
--- Configuring done (0.0s)
--- Generating done (0.0s)
+-- Configuring done (0.1s)
+-- Generating done (0.1s)
 -- Build files have been written to: /Users/haechan/Library/Mobile Documents/com~apple~CloudDocs/2025/객체지향프로그래밍/oop-team8-assigment2/cmake-build-release

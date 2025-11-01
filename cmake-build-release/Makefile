@@ -177,6 +177,54 @@ src/domain/inf_int.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/src/domain/inf_int.cpp.s
 .PHONY : src/domain/inf_int.cpp.s
 
+src/domain/operatorManager.o: src/domain/operatorManager.cpp.o
+.PHONY : src/domain/operatorManager.o
+
+# target to build an object file
+src/domain/operatorManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/src/domain/operatorManager.cpp.o
+.PHONY : src/domain/operatorManager.cpp.o
+
+src/domain/operatorManager.i: src/domain/operatorManager.cpp.i
+.PHONY : src/domain/operatorManager.i
+
+# target to preprocess a source file
+src/domain/operatorManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/src/domain/operatorManager.cpp.i
+.PHONY : src/domain/operatorManager.cpp.i
+
+src/domain/operatorManager.s: src/domain/operatorManager.cpp.s
+.PHONY : src/domain/operatorManager.s
+
+# target to generate assembly for a file
+src/domain/operatorManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/src/domain/operatorManager.cpp.s
+.PHONY : src/domain/operatorManager.cpp.s
+
+src/domain/variable.o: src/domain/variable.cpp.o
+.PHONY : src/domain/variable.o
+
+# target to build an object file
+src/domain/variable.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/src/domain/variable.cpp.o
+.PHONY : src/domain/variable.cpp.o
+
+src/domain/variable.i: src/domain/variable.cpp.i
+.PHONY : src/domain/variable.i
+
+# target to preprocess a source file
+src/domain/variable.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/src/domain/variable.cpp.i
+.PHONY : src/domain/variable.cpp.i
+
+src/domain/variable.s: src/domain/variable.cpp.s
+.PHONY : src/domain/variable.s
+
+# target to generate assembly for a file
+src/domain/variable.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/src/domain/variable.cpp.s
+.PHONY : src/domain/variable.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -225,6 +273,30 @@ src/service/calculrator_service.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/src/service/calculrator_service.cpp.s
 .PHONY : src/service/calculrator_service.cpp.s
 
+src/service/parser_service.o: src/service/parser_service.cpp.o
+.PHONY : src/service/parser_service.o
+
+# target to build an object file
+src/service/parser_service.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/src/service/parser_service.cpp.o
+.PHONY : src/service/parser_service.cpp.o
+
+src/service/parser_service.i: src/service/parser_service.cpp.i
+.PHONY : src/service/parser_service.i
+
+# target to preprocess a source file
+src/service/parser_service.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/src/service/parser_service.cpp.i
+.PHONY : src/service/parser_service.cpp.i
+
+src/service/parser_service.s: src/service/parser_service.cpp.s
+.PHONY : src/service/parser_service.s
+
+# target to generate assembly for a file
+src/service/parser_service.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/src/service/parser_service.cpp.s
+.PHONY : src/service/parser_service.cpp.s
+
 src/view/view.o: src/view/view.cpp.o
 .PHONY : src/view/view.o
 
@@ -264,12 +336,21 @@ help:
 	@echo "... src/domain/inf_int.o"
 	@echo "... src/domain/inf_int.i"
 	@echo "... src/domain/inf_int.s"
+	@echo "... src/domain/operatorManager.o"
+	@echo "... src/domain/operatorManager.i"
+	@echo "... src/domain/operatorManager.s"
+	@echo "... src/domain/variable.o"
+	@echo "... src/domain/variable.i"
+	@echo "... src/domain/variable.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
 	@echo "... src/service/calculrator_service.o"
 	@echo "... src/service/calculrator_service.i"
 	@echo "... src/service/calculrator_service.s"
+	@echo "... src/service/parser_service.o"
+	@echo "... src/service/parser_service.i"
+	@echo "... src/service/parser_service.s"
 	@echo "... src/view/view.o"
 	@echo "... src/view/view.i"
 	@echo "... src/view/view.s"
