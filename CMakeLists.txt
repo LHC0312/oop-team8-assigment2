@@ -1,18 +1,19 @@
-cmake_minimum_required(VERSION 4.0)
-project(CLionProjectsoop2_team8_assigment)
+cmake_minimum_required(VERSION 3.8)
+project(Calculator)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(CLionProjectsoop2_team8_assigment
-        domain/inf_int.cpp
-        domain/include/inf_int.h
-        domain/main.cpp
-        domain/operator.cpp
-        domain/include/operator.h
-        domain/add.cpp
-        domain/include/add.h
-        domain/sub.cpp
-        domain/include/sub.h
-        domain/mul.cpp
-        domain/include/mul.h
+include_directories(${PROJECT_SOURCE_DIR}/include)
+
+set(SRC_FILES
+    src/main.cpp
+    src/domain/inf_int.cpp
+    src/domain/operatorManager.cpp
+    src/domain/variable.cpp
+    src/view/view.cpp
+    src/service/calculrator_service.cpp
+    src/service/parser_service.cpp
+    src/controller/calculator_controller.cpp
 )
+
+add_executable(Calculator ${SRC_FILES})

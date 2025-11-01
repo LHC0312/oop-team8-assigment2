@@ -1,0 +1,6 @@
+.claude
+.idea
+test_calculator.sh
+build
+cmake-build-release
+cmake-build-debug
