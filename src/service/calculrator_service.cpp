@@ -59,6 +59,16 @@ vector<string> CalculatorService::tokenize(const string& expression) const {
             } else {
                 tokens.emplace_back(1, c);
             }
+        } else if (c == 'x' || c == 'X') {
+            // Handle cases like "23x" -> "23 * x"
+            if (!current.empty() && isNumber(current)) {
+                tokens.push_back(std::move(current));
+                current.clear();
+                tokens.emplace_back("*");
+                tokens.emplace_back(1, c);
+            } else {
+                current += c;
+            }
         } else {
             current += c;
         }
@@ -128,27 +138,15 @@ bool CalculatorService::isNumber(const string& token) const {
 }
 
 bool CalculatorService::isOperator(const string& token) const {
-    if (token.empty()) return false;
-
-    if (token == "-" || token == "+" || token == "*" || token == "/" || token == "^") {
-        return true;
-    }
-    return false;
+    return operatorManager.isOperator(token);
 }
 
 int CalculatorService::getPrecedence(const string& op) const {
-    if (op == "+" || op == "-") {
-        return 1;
-    } else if (op == "*" || op == "/") {
-        return 2;
-    } else if (op == "^") {
-        return 3;
-    }
-    return 0;
+    return operatorManager.getPrecedence(op);
 }
 
 bool CalculatorService::isVariable(const string& token) const {
-    return token == "x" || token == "X";
+    return variableHandler.isVariable(token);
 }
 
 bool CalculatorService::hasVariables(const string& expression) const {
@@ -198,7 +196,7 @@ inf_int CalculatorService::evaluatePostfix(const vector<Token>& postfix) const {
                 
             case TokenType::OPERATOR: {
                 if (operandStack.size() < 2) {
-                    throw runtime_error("Invalid expression");
+                    throw runtime_error("Invalid expression: operator '" + token.value + "' requires two operands");
                 }
                 
                 const auto b = operandStack.top();
@@ -246,7 +244,7 @@ inf_int CalculatorService::evaluatePostfixWithVariables(const vector<Token>& pos
             
             case TokenType::OPERATOR: {
                 if (operandStack.size() < 2) {
-                    throw runtime_error("Invalid expression");
+                    throw runtime_error("Invalid expression: operator '" + token.value + "' requires two operands");
                 }
                 
                 const auto b = operandStack.top();
