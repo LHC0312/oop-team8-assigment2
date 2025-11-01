@@ -78,6 +78,11 @@ vector<Token> ParserService::tokenize(const string& expression) const {
             tokens.emplace_back(TokenType::NUMBER, numStr);
             
         } else if (isalpha(c)) {
+            // Handle implicit multiplication like "23x" -> "23 * x"
+            if (!tokens.empty() && tokens.back().type == TokenType::NUMBER) {
+                tokens.emplace_back(TokenType::OPERATOR, "*");
+            }
+            
             // Parse variable
             string varStr;
             while (pos < s.length() && isalpha(peek())) {
@@ -141,8 +146,8 @@ vector<Token> ParserService::infixToPostfix(const vector<Token>& tokens) const {
                 while (!operators.empty() && operators.top().type == TokenType::OPERATOR) {
                     int prec2 = getOperatorPrecedence(operators.top().value);
                     
-                    // Right associative for ^ operator
-                    bool isRightAssoc = (token.value == "^");
+                    // Right associative for ^ and = operators
+                    bool isRightAssoc = (token.value == "^" || token.value == "=");
                     if ((!isRightAssoc && prec2 >= prec1) || (isRightAssoc && prec2 > prec1)) {
                         output.push_back(operators.top());
                         operators.pop();
@@ -178,9 +183,6 @@ bool ParserService::hasVariables(const vector<Token>& tokens) const {
 
 // Helper method for operator precedence
 int ParserService::getOperatorPrecedence(const string& op) const {
-    if (op == "+" || op == "-") return 1;
-    if (op == "*" || op == "/") return 2;
-    if (op == "^") return 3;
-    return 0;
+    return operatorManager.getPrecedence(op);
 }
 

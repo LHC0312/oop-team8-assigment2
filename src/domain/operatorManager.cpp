@@ -2,11 +2,12 @@
 #include <stdexcept>
 
 OperatorManager::OperatorManager() {
-   opers.push_back({"+", 3});
-   opers.push_back({"-", 3});
-   opers.push_back({"*", 1});
-   opers.push_back({"/", 1});
-   opers.push_back({"^", 1});
+   opers.push_back({"=", 0, OperatorType::ASSIGN});
+   opers.push_back({"+", 1, OperatorType::ADD});
+   opers.push_back({"-", 1, OperatorType::SUB});
+   opers.push_back({"*", 2, OperatorType::MUL});
+   opers.push_back({"/", 2, OperatorType::DIV});
+   opers.push_back({"^", 3, OperatorType::POW});
 }
 
 // 연산 함수
@@ -30,6 +31,10 @@ inf_int OperatorManager::pow(inf_int a, inf_int b) const {
    return a ^ b;
 }
 
+inf_int OperatorManager::assign(inf_int a, inf_int b) const {
+   return b;
+}
+
 
 // operator 존재 확인
 bool OperatorManager::isOperator(string str) const {
@@ -39,18 +44,35 @@ bool OperatorManager::isOperator(string str) const {
    return false;
 }
 
-// execute 함수
+// operator 우선순위 반환
+int OperatorManager::getPrecedence(string str) const {
+   for (const auto& op : opers) {
+      if (op.expr == str) return op.priority;
+   }
+   return 0; // 없는 연산자는 우선순위 0
+}
+
 inf_int OperatorManager::execute(string opStr, inf_int a, inf_int b) const {
    for (const auto& op : opers) {
       if (op.expr == opStr) {
-         // const 메서드에서는 멤버 함수 포인터를 직접 호출할 수 없으므로 직접 구현
-         if (opStr == "+") return add(a, b);
-         else if (opStr == "-") return sub(a, b);
-         else if (opStr == "*") return mul(a, b);
-         else if (opStr == "/") return div(a, b);
-         else if (opStr == "^") return pow(a, b);
+         switch (op.type) {
+            case OperatorType::ADD:
+               return add(a, b);
+            case OperatorType::SUB:
+               return sub(a, b);
+            case OperatorType::MUL:
+               return mul(a, b);
+            case OperatorType::DIV:
+               return div(a, b);
+            case OperatorType::POW:
+               return pow(a, b);
+            case OperatorType::ASSIGN:
+               return assign(a, b);
+         }
       }
    }
-   throw runtime_error("Unknown operator: " + opStr);
+   throw std::runtime_error("Unknown operator: " + opStr);
 }
+
+
 

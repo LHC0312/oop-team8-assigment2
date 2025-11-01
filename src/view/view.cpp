@@ -57,12 +57,51 @@ string View::getExpression(bool isVariableMode){
 }
 
 unordered_map<string, double> View::readVariables(){
-    cout << "Enter variable values (format: x=5 or just: 5 for x)\n";
+    cout << "Enter variable values (format: x=5 or 5)\n";
     cout << "> ";
 
     unordered_map<string, double> vars;
     string line;
     getline(cin, line);
+    
+    // Remove leading/trailing whitespace
+    line.erase(0, line.find_first_not_of(" \t\n\r"));
+    line.erase(line.find_last_not_of(" \t\n\r") + 1);
+    
+    // Check if line is empty
+    if (line.empty()) {
+        cout << "No input provided. Using default value x=0\n";
+        vars["x"] = 0;
+        return vars;
+    }
+    
+    // Check if the entire line contains '=' for variable assignment
+    auto pos = line.find("=");
+    if (pos != string::npos) {
+        string varName = line.substr(0, pos);
+        string value = line.substr(pos + 1);
+        
+        // Remove whitespace
+        varName.erase(remove_if(varName.begin(), varName.end(), ::isspace), varName.end());
+        value.erase(remove_if(value.begin(), value.end(), ::isspace), value.end());
+        
+        if (varName.empty() || value.empty()) {
+            cout << "Invalid format. Please use format: x=5 or 5\n";
+            vars["x"] = 0;
+            return vars;
+        }
+        
+        // Convert variable name to lowercase for consistency
+        transform(varName.begin(), varName.end(), varName.begin(), ::tolower);
+        
+        try {
+            vars[varName] = stod(value);
+        } catch (...) {
+            cout << "Invalid number: " << value << ". Using default value x=0\n";
+            vars["x"] = 0;
+        }
+        return vars;
+    }
     
     // Handle simple number input (assume it's for 'x')
     try {
@@ -70,27 +109,8 @@ unordered_map<string, double> View::readVariables(){
         vars["x"] = value;
         return vars;
     } catch (...) {
-        // If it's not a simple number, try parsing as key=value pairs
-    }
-    
-    stringstream ss(line);
-    string kv;
-
-    while(ss >> kv){
-        auto pos = kv.find("=");
-        if (pos != string::npos) {
-            string varName = kv.substr(0, pos);
-            string value = kv.substr(pos + 1);
-            
-            // Convert variable name to lowercase for consistency
-            transform(varName.begin(), varName.end(), varName.begin(), ::tolower);
-            vars[varName] = stod(value);
-        }
-    }
-
-    // If no variables were parsed and we have tokens, assume it's x=value format
-    if (vars.empty()) {
-        vars["x"] = 0; // Default value
+        cout << "Invalid input: " << line << ". Please use format: x=5 or 5\n";
+        vars["x"] = 0;
     }
 
     return vars;
